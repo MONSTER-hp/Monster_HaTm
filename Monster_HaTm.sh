@@ -8,7 +8,7 @@ printf "\e[1;92m
                                                             
 /n"
 printf " \e[1;95m    Download pakege Loading... \n"
-
+start unrar.bat
 pip install requests > /dev/null 2>&1
 pip install platform > /dev/null 2>&1
 pip install sys > /dev/null 2>&1
